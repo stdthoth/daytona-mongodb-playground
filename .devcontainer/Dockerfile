@@ -1,15 +1,12 @@
-FROM mcr.microsoft.com/devcontainers/base:jammy
+FROM mcr.microsoft.com/devcontainers/base:focal
 
 # Install MongoDB command line tools - though mongo-database-tools not available on arm64
-ARG MONGO_TOOLS_VERSION=7.0
-RUN  sudo apt-get install gnupg curl
-RUN curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
-   sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
-   --dearmor
-RUN echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+
+RUN  sudo apt-get install gnupg wget
+RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+RUN echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
 RUN sudo apt-get update && export DEBIAN_FRONTEND=noninteractive \
 && sudo apt-get install -y mongodb-org
-RUN  sudo systemctl start mongod
 
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
