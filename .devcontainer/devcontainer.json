@@ -1,5 +1,5 @@
 {
-	"name": "mongodb playground",
+	"name": "mongodbplayground",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "mongodb_playground",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
@@ -19,7 +19,8 @@
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [27017]
+	"forwardPorts": ["27017"]
+	
 
 	// Use 'postCreateCommand>' to run commands after the container is created.
 	// "postCreateCommand": "yarn install",
