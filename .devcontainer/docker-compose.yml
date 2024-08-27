@@ -24,7 +24,7 @@ services:
     volumes:
       - mongodb-data:/data/db
 
-    # Uncomment to change startup options
+    # Uncomment to change startup options if you want to have authentication on your db
     # environment:
     #  MONGO_INITDB_ROOT_USERNAME: root
     #  MONGO_INITDB_ROOT_PASSWORD: example
