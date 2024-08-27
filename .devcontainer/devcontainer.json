@@ -3,7 +3,7 @@
     "dockerComposeFile": "docker-compose.yml",
     "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
     "service": "mongo",
-    "forwardPorts": [5432],
+    "forwardPorts": [27017],
     "customizations": {
 		"vscode": {
 			// Add the IDs of extensions you want installed when the container is created.
