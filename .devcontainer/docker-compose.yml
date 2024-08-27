@@ -1,22 +1,27 @@
 version: '3.8'
 
 services:
-  db:
-    container_name: mongo
-    image: mongo:4.4
+  mongodb_playground:
+    image: mcr.microsoft.com/devcontainers/base:focal
     volumes:
-      -  mongodb-data:/data/db
+      - ../..:/workspaces:cached
+    # Runs app on the same network as the database container, allows "forwardPorts" in devcontainer.json function.
+    network_mode: service:db
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+
+    
+    # Use "forwardPorts" in **devcontainer.json** to forward an app port locally. 
+    # (Adding the "ports" property to this file will not forward from a Codespace.)
+
+  db:
+    image: mongo:4.4
+    restart: unless-stopped
     ports:
       - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
 
-    restart: unless-stopped
-    
-    
-     
-    
-volumes:
-  mongodb-data:
-      
     # Uncomment to change startup options
     # environment:
     #  MONGO_INITDB_ROOT_USERNAME: root
@@ -25,3 +30,6 @@ volumes:
 
     # Add "forwardPorts": ["27017"] to **devcontainer.json** to forward MongoDB locally.
     # (Adding the "ports" property to this file will not forward from a Codespace.)
+
+volumes:
+  mongodb-data:
