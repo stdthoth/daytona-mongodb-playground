@@ -1,7 +1,7 @@
 {
     "name": "mongo Dev Container Playground",
     "dockerComposeFile": "docker-compose.yml",
-	"service": "mongodb-playground",
+	"service": "mongodb_playground",
     "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
     "forwardPorts": [27017],
     "customizations": {
